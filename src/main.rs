@@ -5,10 +5,17 @@ use env_logger;
 use irc_bot;
 use log;
 
-use irc_bot::modules;
+use ansi_term::Colour::{Blue, Red, Yellow};
 use clap::{arg_enum, value_t};
+use irc_bot::modules;
 
 fn main() {
+    println!("This is in red: {}", Red.paint("a red string"));
+    println!("Demonstrating {} and {}!",
+         Blue.bold().paint("blue bold"),
+         Yellow.underline().paint("yellow underline"));
+
+    println!("Yellow on blue: {}", Yellow.on(Blue).paint("wow!"));
     let args = clap::App::new("egbot")
         .arg(
             clap::Arg::with_name("config-file")
